@@ -130,13 +130,13 @@ public class MainActivity extends AppCompatActivity {
             Camera.Parameters parameters = camera.getParameters();
             Size size = parameters.getPreviewSize();
 
-            Image barcode = new Image(size.width, size.height, "Y800");
+            Image barcode = new Image(size.width, size.height, "RGB4");
             barcode.setData(data);
 
             String qrCodeString = null;
             ImageScanner mImageScanner = new ImageScanner();
 
-            int result = mImageScanner.scanImage(barcode);
+            int result = mImageScanner.scanImage(barcode.convert("Y800"));
             if (result != 0) {
                 SymbolSet symSet = mImageScanner.getResults();
                 for (Symbol sym : symSet)
